@@ -18,7 +18,15 @@
 
       <form id="myForm">
         <label for="name">Name of Teacher<span style="color: #c71f37;">*</span></label>
-        <input type="text" id="name" required placeholder="Enter teacher's name">
+        <select id="name" required>
+        <option value="" disabled selected>Select a teacher</option>
+        <option value="Mr. Smith">Mr. Smith</option>
+        <option value="Ms. Johnson">Ms. Johnson</option>
+        <option value="Dr. Williams">Dr. Williams</option>
+        <option value="Mrs. Brown">Mrs. Brown</option>
+        <option value="Mr. Davis">Mr. Davis</option>
+        <!-- examples teachers ( add more as necessary ) -->
+        </select>
 
         <label for="name">Rating for Teacher<span style="color: #c71f37;">*</span></label>
         <div class="star-rating" style="text-align: center" id="starRating">
