@@ -19,6 +19,8 @@
         <label for="name">Name of Teacher<span style="color: #c71f37;">*</span></label>
         <input type="text" id="name" required placeholder="Enter teacher's name">
 
+        <input type="text" id="job" required placeholder="this isa test">
+
         <button type="submit">Submit</button>
       </form>
 
@@ -31,36 +33,5 @@
       </div>
     </div>
   </div>
-
-  <script>
-    document.getElementById('myForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData();
-      formData.append('entry.1680065577', document.getElementById('name').value);
-
-      try {
-        await fetch('https://docs.google.com/forms/d/e/1FAIpQLSc4rBfgtW5tloWSRJbxBp3J1mTLYieLBpxO5wapAy-qQupJ0w/formResponse', {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors'
-        });
-
-        document.getElementById('successMessage').classList.add('show');
-        document.getElementById('errorMessage').classList.remove('show');
-        
-        // Clear the form
-        document.getElementById('myForm').reset();
-
-      } catch (error) {
-        document.getElementById('errorMessage').classList.add('show');
-        document.getElementById('successMessage').classList.remove('show');
-
-        setTimeout(() => {
-          document.getElementById('errorMessage').classList.remove('show');
-        }, 5000);
-      }
-    });
-  </script>
 </body>
 </html>
