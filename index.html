@@ -1,8 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RateMyTeacher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #1a1a2e;
+      min-height: 100vh;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: black;
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.93);
+      padding: 48px 45px;
+      border-radius: 18px;
+      box-shadow: 0 15px 60px rgba(199, 31, 55, 0.3), 0 5px 15px rgba(0, 0, 0, 0.2);
+      border: 3px solid #e8e8e8;
+      position: relative;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #c71f37, #ff6b6b, #c71f37);
+      border-radius: 18px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .container:hover::after {
+      opacity: 0.3;
+    }
+
+    h2 {
+      color: #2d2d2d;
+      margin-bottom: 8px;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: #7a7a7a;
+      margin-bottom: 35px;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    label {
+      display: block;
+      color: #3a3a3a;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 18px;
+      margin-bottom: 25px;
+      border: 2px solid #d4d4d4;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s;
+      background: #fafafa;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #c71f37;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(199, 31, 55, 0.1);
+    }
+
+    input[type="text"]::placeholder {
+      color: #a8a8a8;
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #c71f37 0%, #8b1538 100%);
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(199, 31, 55, 0.3);
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #a01828 0%, #6d0f28 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(199, 31, 55, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(199, 31, 55, 0.3);
+    }
+
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, #00b894 0%, #00856f 100%);
+      color: white;
+      padding: 18px;
+      border-radius: 8px;
+      margin-top: 25px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+    }
+
+    .success-message.show {
+      display: block;
+      animation: slideDown 0.4s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-message {
+      display: none;
+      background: linear-gradient(135deg, #d63031 0%, #b71c1c 100%);
+      color: white;
+      padding: 18px;
+      border-radius: 8px;
+      margin-top: 25px;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(214, 48, 49, 0.3);
+    }
+
+    .error-message.show {
+      display: block;
+      animation: slideDown 0.4s ease;
+    }
+
+    .decorative-shape {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(199, 31, 55, 0.1), transparent);
+      pointer-events: none;
+    }
+
+    .shape-1 {
+      top: -30px;
+      right: -30px;
+      width: 150px;
+      height: 150px;
+    }
+
+    .shape-2 {
+      bottom: -40px;
+      left: -40px;
+      width: 120px;
+      height: 120px;
+    }
+  </style>
+</head>
 <body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="decorative-shape shape-1"></div>
+      <div class="decorative-shape shape-2"></div>
 
-<p>how deep is ur love</p>
+      <h2>Rate My Teacher</h2>
+      <p class="subtitle">Very duc form (only 1 question for testing's sake)</p>
 
+      <form id="myForm">
+        <label for="name">Name of Teacher<span style="color: #c71f37;">*</span></label>
+        <input type="text" id="name" required placeholder="Enter teacher's name">
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        Perfect! Thank you! Your form has been submitted successfully.
+      </div>
+
+      <div class="error-message" id="errorMessage">
+        Error! There was an error submitting the form. Please try again.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.append('entry.1680065577', document.getElementById('name').value);
+
+      try {
+        await fetch('https://docs.google.com/forms/d/e/1FAIpQLSc4rBfgtW5tloWSRJbxBp3J1mTLYieLBpxO5wapAy-qQupJ0w/formResponse', {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+
+        document.getElementById('successMessage').classList.add('show');
+        document.getElementById('errorMessage').classList.remove('show');
+        
+        // Clear the form
+        document.getElementById('myForm').reset();
+
+      } catch (error) {
+        document.getElementById('errorMessage').classList.add('show');
+        document.getElementById('successMessage').classList.remove('show');
+
+        setTimeout(() => {
+          document.getElementById('errorMessage').classList.remove('show');
+        }, 5000);
+      }
+    });
+  </script>
 </body>
 </html>
