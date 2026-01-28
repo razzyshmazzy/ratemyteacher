@@ -98,6 +98,28 @@
       transition: all 0.3s;
       background: #fafafa;
     }
+    .star-rating {
+        display: flex;
+        gap: 5px;
+        font-size: 40px;
+        margin-bottom: 25px;
+        cursor: pointer;
+    }
+
+    .star {
+        color: #d4d4d4;
+        transition: color 0.2s;
+        user-select: none;
+    }
+
+    .star:hover,
+    .star.active {
+        color: #ffd700;
+    }
+
+    .star.selected {
+        color: #c71f37;
+    }
 
     input[type="text"]:focus {
       outline: none;

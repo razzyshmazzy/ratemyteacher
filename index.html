@@ -20,7 +20,15 @@
         <label for="name">Name of Teacher<span style="color: #c71f37;">*</span></label>
         <input type="text" id="name" required placeholder="Enter teacher's name">
 
-        <input type="text" id="job" required placeholder="this isa test">
+        <label for="name">Rating for Teacher<span style="color: #c71f37;">*</span></label>
+        <div class="star-rating" id="starRating">
+            <span class="star" data-value="1">☆</span>
+            <span class="star" data-value="2">☆</span>
+            <span class="star" data-value="3">☆</span>
+            <span class="star" data-value="4">☆</span>
+            <span class="star" data-value="5">☆</span>
+        </div>
+        <input type="hidden" id="rating" name="rating" required>
 
         <button type="submit">Submit</button>
       </form>
